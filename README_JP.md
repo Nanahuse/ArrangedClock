@@ -3,7 +3,6 @@
 
 [*ENGLISH PAGE*](README.md)
 
-
 # ArrangedClock
 OBSのテキストソースにカスタマイズ可能な時計を表示できます。
 
