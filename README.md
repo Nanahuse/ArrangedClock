@@ -4,7 +4,7 @@
 [*日本語の説明はこちら*](README_JP.md)
 
 
-# ArrangeClock
+# ArrangedClock
 This script can show customizable clock on text source.
 
 * Customizable clock string
