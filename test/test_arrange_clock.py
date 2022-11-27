@@ -1,3 +1,7 @@
+# Copyright (c) 2022 Nanahuse
+# This software is released under the MIT License
+# https://github.com/Nanahuse/ArrangedClock/blob/main/LICENSE
+
 import zoneinfo
 from datetime import datetime
 from logic import make_display_time, get_sorted_timezones, get_timeoffset_from_ntp, USE_PC_TIMEZONE

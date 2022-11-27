@@ -1,3 +1,7 @@
+# Copyright (c) 2022 Nanahuse
+# This software is released under the MIT License
+# https://github.com/Nanahuse/ArrangedClock/blob/main/LICENSE
+
 import obspython as obs
 from typing import Any
 
