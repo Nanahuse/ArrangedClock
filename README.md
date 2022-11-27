@@ -15,7 +15,7 @@ This script can show customizable clock on text source.
 
 
 # Setup
-1. Download latest version from ReleasePage.
+1. Download latest version zip file from [ReleasePage](https://github.com/Nanahuse/ArrangedClock/releases).
 2. Install dependent library by [requirements.txt](requirements.txt)<br>```$ pip install -r requirements.txt```
 3. OBS -> tool -> script -> Python Settings<br>Set python.exe path (Python 3.10 or later)
 4. OBS -> tool -> script<br>add script (select -> arrange_clock.py)
