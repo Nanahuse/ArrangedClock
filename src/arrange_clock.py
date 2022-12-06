@@ -6,7 +6,6 @@ import obspython as obs
 from datetime import datetime, timedelta
 from typing import Optional
 from logic import make_display_time, get_sorted_timezones, get_timeoffset_from_ntp, USE_PC_TIMEZONE
-from osb_util import set_source_list
 
 # constants
 CLOCK_UPDATE_INTERVAL_MS = 50
@@ -23,16 +22,23 @@ timezone_name: Optional[str] = None
 
 def script_properties():
     props = obs.obs_properties_create()
+
     source_list = obs.obs_properties_add_list(
-        props, "source", "Display source", obs.OBS_COMBO_TYPE_EDITABLE, obs.OBS_COMBO_FORMAT_STRING
+        props, "source", "Display source", obs.OBS_COMBO_TYPE_LIST, obs.OBS_COMBO_FORMAT_STRING
     )
+    obs.obs_property_list_add_string(source_list, "", "")  # source_listの先頭に空の値を指定することで、スクリプトを読み込んだときに意図しないソースが変更されるのを防ぐ
+    sources = obs.obs_enum_sources()
+    if sources is not None:
+        for source in sources:
+            source_id = obs.obs_source_get_unversioned_id(source)
+            if source_id in {"text_gdiplus", "text_ft2_source"}:
+                name = obs.obs_source_get_name(source)
+                obs.obs_property_list_add_string(source_list, name, name)
+    obs.source_list_release(sources)
 
     time_zone_list = obs.obs_properties_add_list(
-        props, "timezone_name", "Time zone", obs.OBS_COMBO_TYPE_EDITABLE, obs.OBS_COMBO_FORMAT_STRING
+        props, "timezone_name", "Time zone", obs.OBS_COMBO_TYPE_LIST, obs.OBS_COMBO_FORMAT_STRING
     )
-
-    set_source_list(source_list, {"text_gdiplus", "text_ft2_source"})
-
     for timezone in get_sorted_timezones():
         obs.obs_property_list_add_string(time_zone_list, timezone, timezone)
 
@@ -77,6 +83,7 @@ def script_description():
 
 
 def script_defaults(settings):
+    obs.obs_data_set_default_string(settings, "source", "")
     obs.obs_data_set_default_string(settings, "timezone_name", USE_PC_TIMEZONE)
     obs.obs_data_set_default_string(settings, "clock_format_str", "%Y-%m-%d %H:%M:%S")
     obs.obs_data_set_default_string(settings, "ntp_server_host", "")

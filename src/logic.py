@@ -34,15 +34,11 @@ def get_sorted_timezones() -> list[str]:
 
 def make_display_time(raw_time: datetime, timezone_name: str, string_format) -> str:
     try:
-        if timezone_name == "":
-            raise zoneinfo.ZoneInfoNotFoundError(timezone_name)
-
         if timezone_name == USE_PC_TIMEZONE:
             converted_time = raw_time.astimezone(tz=None)
         else:
             converted_time = raw_time.astimezone(tz=zoneinfo.ZoneInfo(timezone_name))
         return converted_time.strftime(string_format)
-
     except zoneinfo.ZoneInfoNotFoundError as e:
         print(e)
         return "[Time zone] is invalid"
