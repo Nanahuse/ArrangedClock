@@ -12,7 +12,10 @@ OBSのテキストソースにカスタマイズ可能な時計を表示でき�
 
 *このスクリプトを使うためにはOBS28とPython 3.10以降が必要になります*
 
+
 # Setup
+**[導入の説明(note)](https://note.com/nanahuse/n/ndb2f96beba76)**
+
 1. [リリースページ](https://github.com/Nanahuse/ArrangedClock/releases)から最新のバージョンのZIPファイルをダウンロードする.
 2. [requirements.txt](requirements.txt)を使った依存ライブラリのインストール<br>```$ pip install -r requirements.txt```
 3. OBS -> ツール -> スクリプト -> Pythonの設定<br>Pythonインストールパスを設定する ※Python 3.10 or laterが必須。
