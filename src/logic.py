@@ -38,7 +38,7 @@ def make_display_time(raw_time: datetime, timezone_name: str, string_format) -> 
             converted_time = raw_time.astimezone(tz=None)
         else:
             converted_time = raw_time.astimezone(tz=zoneinfo.ZoneInfo(timezone_name))
-        return converted_time.strftime(string_format)
+        return strftime(converted_time, string_format)
     except zoneinfo.ZoneInfoNotFoundError as e:
         print(e)
         return "[Time zone] is invalid"
@@ -48,6 +48,17 @@ def make_display_time(raw_time: datetime, timezone_name: str, string_format) -> 
     except Exception as e:
         print(e)
         return "[Unexpected Error]"
+
+
+def strftime(time: datetime, string_format: str) -> str:
+    # apply custom format
+    custumed_string_format = string_format
+    # %nm : Month as non zero-padded  (ex. 1, 2, 3,..., 12)
+    custumed_string_format = custumed_string_format.replace("%nm", str(time.month))
+    # %nd : Day of the month as non zero-padded  (ex. 1, 2, 3,..., 31)
+    custumed_string_format = custumed_string_format.replace("%nd", str(time.day))
+
+    return time.strftime(custumed_string_format)
 
 
 def get_timeoffset_from_ntp(ntp_host: str) -> Optional[timedelta]:

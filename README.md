@@ -28,11 +28,21 @@ select text source
 You can display other countries clock.
 
 ## Clock format
-```%Y-%m-%d %A %H:%M:%S``` -> 2021-10-18 Monday 21:00:00<br>
-```%Y-%m-%d %A %H:%M``` -> 2021/10/18 Mon. 21:00
+Clock format follows Python datetime strftime. ([Python datetime document](https://docs.python.org/3.10/library/datetime.html#strftime-and-strptime-format-code)
+)<br>
+And there are some additional formats.<br>
 
-Clock format follows Python datetime strftime.<br>
-Please refer to [Python datetime document](https://docs.python.org/3.10/library/datetime.html#strftime-and-strptime-format-code)
+
+### ADDITIONAL format
+Directive|Meaning|Example
+:-|:-|:-
+%nm|Month as a non zero-padded decimal number. | 1, 2, ..., 12
+%nd|Day of the month as a non zero-padded decimal number. | 1, 2, ..., 31
+### Sample
+```%Y-%m-%d %A %H:%M:%S``` -> 2021-10-18 Monday 21:00:00<br>
+```%Y-%m-%d %A %H:%M``` -> 2021/10/18 Mon. 21:00<br>
+```%Y-%nm-%nd``` -> 2021/1/1
+
 
 
 ## NTP server url

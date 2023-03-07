@@ -4,7 +4,7 @@
 
 import zoneinfo
 from datetime import datetime
-from logic import make_display_time, get_sorted_timezones, get_timeoffset_from_ntp, USE_PC_TIMEZONE
+from logic import make_display_time, strftime, get_sorted_timezones, get_timeoffset_from_ntp, USE_PC_TIMEZONE
 
 
 def test_make_display_time():
@@ -58,3 +58,7 @@ def test_get_sorted_timezones():
 def test_get_timeoffset_from_ntp():
     assert get_timeoffset_from_ntp("ntp.nict.jp") is not None
     assert get_timeoffset_from_ntp("ntp.nict.j") is None
+
+
+def test_strftime():
+    assert strftime(datetime(2000, 1, 1, 11, 11, 11, tzinfo=zoneinfo.ZoneInfo("UTC")), "%Y-%nm-%nd") == "2000-1-1"
